@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from "react";
-import * as THREE from "three";
+import { Scene, PerspectiveCamera, Color, WebGLRenderer, AmbientLight, DirectionalLight, GridHelper, AxesHelper, BoxGeometry, CanvasTexture, SpriteMaterial, Sprite, MeshPhongMaterial, Mesh } from 'three';
+
 
 // Simpler implementation of 3D chart using vanilla Three.js
 export default function ThreeJsChart({ data, xKey, yKey }) {
@@ -27,17 +28,17 @@ export default function ThreeJsChart({ data, xKey, yKey }) {
       const height = container.clientHeight;
 
       // Create scene
-      const scene = new THREE.Scene();
-      scene.background = new THREE.Color(0xf0f0f0);
+      const scene = new Scene();
+      scene.background = new Color(0xf0f0f0);
       sceneRef.current = scene;
 
       // Create camera
-      const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
+      const camera = new PerspectiveCamera(45, width / height, 0.1, 1000);
       camera.position.set(20, 20, 20);
       cameraRef.current = camera;
 
       // Create renderer
-      const renderer = new THREE.WebGLRenderer({ antialias: true });
+      const renderer = new WebGLRenderer({ antialias: true });
       renderer.setSize(width, height);
       renderer.shadowMap.enabled = true;
       container.appendChild(renderer.domElement);
@@ -50,20 +51,20 @@ export default function ThreeJsChart({ data, xKey, yKey }) {
       controlsRef.current = controls;
 
       // Add lights
-      const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+      const ambientLight = new AmbientLight(0xffffff, 0.6);
       scene.add(ambientLight);
 
-      const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+      const directionalLight = new DirectionalLight(0xffffff, 0.8);
       directionalLight.position.set(10, 20, 10);
       directionalLight.castShadow = true;
       scene.add(directionalLight);
 
       // Create grid helper
-      const gridHelper = new THREE.GridHelper(30, 30);
+      const gridHelper = new GridHelper(50, 50);
       scene.add(gridHelper);
 
       // Create axes helper
-      const axesHelper = new THREE.AxesHelper(15);
+      const axesHelper = new AxesHelper(15);
       scene.add(axesHelper);
 
       // Create 3D bars for data visualization
@@ -129,17 +130,17 @@ export default function ThreeJsChart({ data, xKey, yKey }) {
     );
 
     // Add axes and grid back
-    const gridHelper = new THREE.GridHelper(30, 30);
+    const gridHelper = new GridHelper(30, 30);
     scene.add(gridHelper);
 
-    const axesHelper = new THREE.AxesHelper(15);
+    const axesHelper = new AxesHelper(15);
     scene.add(axesHelper);
 
     // Add lights
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+    const ambientLight = new AmbientLight(0xffffff, 0.6);
     scene.add(ambientLight);
 
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+    const directionalLight = new DirectionalLight(0xffffff, 0.8);
     directionalLight.position.set(10, 20, 10);
     directionalLight.castShadow = true;
     scene.add(directionalLight);
@@ -166,16 +167,16 @@ export default function ThreeJsChart({ data, xKey, yKey }) {
       const normalizedHeight = normalizeValue(value);
 
       // Create bar geometry
-      const geometry = new THREE.BoxGeometry(1, normalizedHeight, 1);
+      const geometry = new BoxGeometry(1, normalizedHeight, 1);
 
       // Create bar material
-      const material = new THREE.MeshPhongMaterial({
-        color: new THREE.Color(colors[index % colors.length]),
+      const material = new MeshPhongMaterial({
+        color: new Color(colors[index % colors.length]),
         shininess: 100,
       });
 
       // Create mesh
-      const bar = new THREE.Mesh(geometry, material);
+      const bar = new Mesh(geometry, material);
 
       // Position bar
       bar.position.set(
@@ -199,9 +200,9 @@ export default function ThreeJsChart({ data, xKey, yKey }) {
       context.font = "24px Arial";
       context.fillText(String(value), 10, 40);
 
-      const texture = new THREE.CanvasTexture(canvas);
-      const labelMaterial = new THREE.SpriteMaterial({ map: texture });
-      const label = new THREE.Sprite(labelMaterial);
+      const texture = new CanvasTexture(canvas);
+      const labelMaterial = new SpriteMaterial({ map: texture });
+      const label = new Sprite(labelMaterial);
       label.position.set(
         bar.position.x,
         bar.position.y + normalizedHeight / 2 + 1,
@@ -220,9 +221,9 @@ export default function ThreeJsChart({ data, xKey, yKey }) {
       nameContext.font = "18px Arial";
       nameContext.fillText(String(item[xKey]).substring(0, 15), 10, 30);
 
-      const nameTexture = new THREE.CanvasTexture(nameCanvas);
-      const nameLabelMaterial = new THREE.SpriteMaterial({ map: nameTexture });
-      const nameLabel = new THREE.Sprite(nameLabelMaterial);
+      const nameTexture = new CanvasTexture(nameCanvas);
+      const nameLabelMaterial = new SpriteMaterial({ map: nameTexture });
+      const nameLabel = new Sprite(nameLabelMaterial);
       nameLabel.position.set(bar.position.x, -0.5, bar.position.z + 1);
       nameLabel.scale.set(5, 1.25, 1);
       nameLabel.userData = { type: "dataBar" };
@@ -238,9 +239,9 @@ export default function ThreeJsChart({ data, xKey, yKey }) {
     xAxisContext.font = "bold 24px Arial";
     xAxisContext.fillText(xKey, 10, 40);
 
-    const xAxisTexture = new THREE.CanvasTexture(xAxisCanvas);
-    const xAxisMaterial = new THREE.SpriteMaterial({ map: xAxisTexture });
-    const xAxisLabel = new THREE.Sprite(xAxisMaterial);
+    const xAxisTexture = new CanvasTexture(xAxisCanvas);
+    const xAxisMaterial = new SpriteMaterial({ map: xAxisTexture });
+    const xAxisLabel = new Sprite(xAxisMaterial);
     xAxisLabel.position.set(0, -2, (data.length * spacingFactor) / 2 + 2);
     xAxisLabel.scale.set(8, 2, 1);
     xAxisLabel.userData = { type: "dataBar" };
@@ -254,9 +255,9 @@ export default function ThreeJsChart({ data, xKey, yKey }) {
     yAxisContext.font = "bold 24px Arial";
     yAxisContext.fillText(yKey, 10, 40);
 
-    const yAxisTexture = new THREE.CanvasTexture(yAxisCanvas);
-    const yAxisMaterial = new THREE.SpriteMaterial({ map: yAxisTexture });
-    const yAxisLabel = new THREE.Sprite(yAxisMaterial);
+    const yAxisTexture = new CanvasTexture(yAxisCanvas);
+    const yAxisMaterial = new SpriteMaterial({ map: yAxisTexture });
+    const yAxisLabel = new Sprite(yAxisMaterial);
     yAxisLabel.position.set((-data.length * spacingFactor) / 2 - 2, 5, 0);
     yAxisLabel.scale.set(8, 2, 1);
     yAxisLabel.userData = { type: "dataBar" };
