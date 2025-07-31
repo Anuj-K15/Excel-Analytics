@@ -33,7 +33,7 @@
     "build": "DISABLE_ESLINT_PLUGIN=true react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "vercel-build": "npm install && npm run build"
+    "vercel-build": "npm install --legacy-peer-deps && npm run build"
   },
   "eslintConfig": {
     "extends": [
