@@ -129,56 +129,62 @@ export default function DashboardPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       <Navbar />
-
+      <hr />
       <motion.div
         initial="hidden"
         animate="visible"
         variants={containerVariants}
-        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8"
       >
-        {/* Welcome Header */}
-        <motion.div variants={itemVariants} className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">
-            Welcome back, {user?.name || "User"}! 👋
-          </h1>
-          <p className="text-gray-600 mt-2">
-            Here's what's happening with your Excel analytics
-          </p>
-        </motion.div>
+        <div
+          className={`py-10 px-6 ${
+            darkMode
+              ? "bg-gray-800"
+              : "bg-gradient-to-r from-blue-700 to-blue-300 text-white"
+          }`}
+        >
+          {/* Welcome Header */}
+          <motion.div variants={itemVariants} className="mb-8">
+            <h1 className="text-3xl font-bold text-gray-900">
+              Welcome back, {user?.name || "User"}! 👋
+            </h1>
+            <p className="text-gray-600 mt-2">
+              Here's what's happening with your Excel analytics
+            </p>
+          </motion.div>
 
-        {/* Stats Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          <StatCard
-            icon={FiUpload}
-            title="Total Uploads"
-            value={stats.totalUploads}
-            subtitle="Files processed"
-            color="border-blue-500"
-          />
-          <StatCard
-            icon={FiFile}
-            title="Unique Files"
-            value={stats.totalFiles}
-            subtitle="Different files"
-            color="border-green-500"
-          />
-          <StatCard
-            icon={FiTrendingUp}
-            title="This Week"
-            value={stats.weeklyUploads}
-            subtitle="Recent uploads"
-            color="border-purple-500"
-          />
-          <StatCard
-            icon={FiBarChart2}
-            title="Chart Types"
-            value={Object.keys(stats.chartTypes).length}
-            subtitle="Visualization types"
-            color="border-orange-500"
-          />
+          {/* Stats Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            <StatCard
+              icon={FiUpload}
+              title="Total Uploads"
+              value={stats.totalUploads}
+              subtitle="Files processed"
+              color="border-blue-500"
+            />
+            <StatCard
+              icon={FiFile}
+              title="Unique Files"
+              value={stats.totalFiles}
+              subtitle="Different files"
+              color="border-green-500"
+            />
+            <StatCard
+              icon={FiTrendingUp}
+              title="This Week"
+              value={stats.weeklyUploads}
+              subtitle="Recent uploads"
+              color="border-purple-500"
+            />
+            <StatCard
+              icon={FiBarChart2}
+              title="Chart Types"
+              value={Object.keys(stats.chartTypes).length}
+              subtitle="Visualization types"
+              color="border-orange-500"
+            />
+          </div>
         </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 py-8 gap-8">
           {/* Recent Activity */}
           <motion.div
             variants={itemVariants}
@@ -280,10 +286,11 @@ export default function DashboardPage() {
           </motion.div>
         </div>
 
+        <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 py-8">
         {/* Quick Actions */}
         <motion.div
           variants={itemVariants}
-          className="mt-8 bg-white rounded-xl shadow-lg p-6"
+          className="mt-8  bg-white rounded-xl shadow-lg p-6"
         >
           <h2 className="text-xl font-semibold text-gray-800 mb-6">
             Quick Actions
@@ -323,6 +330,7 @@ export default function DashboardPage() {
             </button>
           </div>
         </motion.div>
+        </div>
       </motion.div>
       {/* Footer */}
       <div

@@ -263,13 +263,13 @@ export default function Analyze() {
     >
       {/* Header */}
       <Navbar />
-
+      <hr />
       {/* Hero Section */}
       <div
         className={`py-10 px-6 ${
           darkMode
             ? "bg-gray-800"
-            : "bg-gradient-to-r from-indigo-600 to-purple-600 text-white"
+            : "bg-gradient-to-r from-blue-700 to-blue-300 text-white"
         }`}
       >
         <div className="container mx-auto max-w-6xl relative">
