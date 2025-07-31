@@ -41,7 +41,7 @@ export default function DashboardPage() {
       if (!token) return;
 
       // Fetch history data to calculate stats
-      const historyRes = await axios.get("http://localhost:5000/api/history", {
+      const historyRes = await axios.get(`${process.env.REACT_APP_API_URL || "http://localhost:5000/api"}/history`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 

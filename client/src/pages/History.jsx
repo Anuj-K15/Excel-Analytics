@@ -20,7 +20,7 @@ export default function History() {
         }
 
         console.log("Fetching history...");
-        const res = await axios.get("http://localhost:5000/api/history", {
+        const res = await axios.get(`${process.env.REACT_APP_API_URL || "http://localhost:5000/api"}/history`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

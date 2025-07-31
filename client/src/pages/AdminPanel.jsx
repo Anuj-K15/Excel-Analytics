@@ -70,7 +70,7 @@ export default function AdminPanel() {
 
       // Fetch admin statistics
       const statsRes = await axios.get(
-        "http://localhost:5000/api/admin/stats",
+        `${process.env.REACT_APP_API_URL || "http://localhost:5000/api"}/admin/stats`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -78,7 +78,7 @@ export default function AdminPanel() {
 
       // Fetch all users
       const usersRes = await axios.get(
-        "http://localhost:5000/api/admin/users",
+        `${process.env.REACT_APP_API_URL || "http://localhost:5000/api"}/admin/users`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -86,7 +86,7 @@ export default function AdminPanel() {
 
       // Fetch all uploads
       const uploadsRes = await axios.get(
-        "http://localhost:5000/api/admin/uploads",
+        `${process.env.REACT_APP_API_URL || "http://localhost:5000/api"}/admin/uploads`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -131,7 +131,7 @@ export default function AdminPanel() {
 
     try {
       const token = localStorage.getItem("token");
-      await axios.delete(`http://localhost:5000/api/admin/users/${userId}`, {
+      await axios.delete(`${process.env.REACT_APP_API_URL || "http://localhost:5000/api"}/admin/users/${userId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -154,7 +154,7 @@ export default function AdminPanel() {
     try {
       const token = localStorage.getItem("token");
       await axios.delete(
-        `http://localhost:5000/api/admin/uploads/${uploadId}`,
+        `${process.env.REACT_APP_API_URL || "http://localhost:5000/api"}/admin/uploads/${uploadId}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -180,7 +180,7 @@ export default function AdminPanel() {
     try {
       const token = localStorage.getItem("token");
       await axios.patch(
-        `http://localhost:5000/api/admin/users/${userId}/status`,
+        `${process.env.REACT_APP_API_URL || "http://localhost:5000/api"}/admin/users/${userId}/status`,
         { status: newStatus },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -206,7 +206,7 @@ export default function AdminPanel() {
     try {
       const token = localStorage.getItem("token");
       await axios.patch(
-        `http://localhost:5000/api/admin/users/${userId}/role`,
+        `${process.env.REACT_APP_API_URL || "http://localhost:5000/api"}/admin/users/${userId}/role`,
         { role: newRole },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -224,7 +224,7 @@ export default function AdminPanel() {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.get(
-        `http://localhost:5000/api/admin/users/${userId}`,
+        `${process.env.REACT_APP_API_URL || "http://localhost:5000/api"}/admin/users/${userId}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
