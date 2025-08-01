@@ -58,7 +58,9 @@ export default function ChartVisualizer({
 
       try {
         await axios.post(
-          `${process.env.REACT_APP_API_URL}/history`,
+          `${
+            process.env.REACT_APP_API_URL || "http://localhost:5000"
+          }/api/history`,
           {
             fileName: data[0]?.__filename || "uploaded_file.xlsx",
             chartType,
