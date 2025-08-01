@@ -23,7 +23,7 @@ const PORT = process.env.PORT || 5000;
 // Enhanced CORS Configuration
 const allowedOrigins = [
   "http://localhost:3000",
-  "http://localhost:3000",
+  "excel-analytics-anuj.vercel.app",
   ...(process.env.FRONTEND_URL ? [process.env.FRONTEND_URL] : []),
 ];
 
@@ -87,7 +87,7 @@ app.get("/health", (req, res) => {
 
 // server.js - add this before your routes
 app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+  res.header("Access-Control-Allow-Origin", "excel-analytics-anuj.vercel.app");
   res.header(
     "Access-Control-Allow-Methods",
     "GET, POST, PUT, DELETE, OPTIONS, PATCH"
