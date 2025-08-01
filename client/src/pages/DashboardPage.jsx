@@ -41,9 +41,14 @@ export default function DashboardPage() {
       if (!token) return;
 
       // Fetch history data to calculate stats
-      const historyRes = await axios.get(`${process.env.REACT_APP_API_URL || "http://localhost:5000/api"}/history`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const historyRes = await axios.get(
+        `${
+          process.env.REACT_APP_API_URL || "http://localhost:5000"
+        }/api/history`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
 
       const historyData = historyRes.data.data || [];
 
@@ -287,49 +292,49 @@ export default function DashboardPage() {
         </div>
 
         <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 py-8">
-        {/* Quick Actions */}
-        <motion.div
-          variants={itemVariants}
-          className="mt-8  bg-white rounded-xl shadow-lg p-6"
-        >
-          <h2 className="text-xl font-semibold text-gray-800 mb-6">
-            Quick Actions
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <button
-              onClick={() => navigate("/analyze")}
-              className="flex items-center gap-3 p-4 bg-indigo-50 hover:bg-indigo-100 rounded-lg transition-colors"
-            >
-              <FiUpload className="text-indigo-600" />
-              <div className="text-left">
-                <p className="font-medium text-gray-800">Upload New File</p>
-                <p className="text-gray-500 text-sm">Analyze Excel data</p>
-              </div>
-            </button>
+          {/* Quick Actions */}
+          <motion.div
+            variants={itemVariants}
+            className="mt-8  bg-white rounded-xl shadow-lg p-6"
+          >
+            <h2 className="text-xl font-semibold text-gray-800 mb-6">
+              Quick Actions
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <button
+                onClick={() => navigate("/analyze")}
+                className="flex items-center gap-3 p-4 bg-indigo-50 hover:bg-indigo-100 rounded-lg transition-colors"
+              >
+                <FiUpload className="text-indigo-600" />
+                <div className="text-left">
+                  <p className="font-medium text-gray-800">Upload New File</p>
+                  <p className="text-gray-500 text-sm">Analyze Excel data</p>
+                </div>
+              </button>
 
-            <button
-              onClick={() => navigate("/history")}
-              className="flex items-center gap-3 p-4 bg-green-50 hover:bg-green-100 rounded-lg transition-colors"
-            >
-              <FiClock className="text-green-600" />
-              <div className="text-left">
-                <p className="font-medium text-gray-800">View History</p>
-                <p className="text-gray-500 text-sm">Past uploads</p>
-              </div>
-            </button>
+              <button
+                onClick={() => navigate("/history")}
+                className="flex items-center gap-3 p-4 bg-green-50 hover:bg-green-100 rounded-lg transition-colors"
+              >
+                <FiClock className="text-green-600" />
+                <div className="text-left">
+                  <p className="font-medium text-gray-800">View History</p>
+                  <p className="text-gray-500 text-sm">Past uploads</p>
+                </div>
+              </button>
 
-            <button
-              onClick={fetchDashboardData}
-              className="flex items-center gap-3 p-4 bg-purple-50 hover:bg-purple-100 rounded-lg transition-colors"
-            >
-              <FiActivity className="text-purple-600" />
-              <div className="text-left">
-                <p className="font-medium text-gray-800">Refresh Data</p>
-                <p className="text-gray-500 text-sm">Update statistics</p>
-              </div>
-            </button>
-          </div>
-        </motion.div>
+              <button
+                onClick={fetchDashboardData}
+                className="flex items-center gap-3 p-4 bg-purple-50 hover:bg-purple-100 rounded-lg transition-colors"
+              >
+                <FiActivity className="text-purple-600" />
+                <div className="text-left">
+                  <p className="font-medium text-gray-800">Refresh Data</p>
+                  <p className="text-gray-500 text-sm">Update statistics</p>
+                </div>
+              </button>
+            </div>
+          </motion.div>
         </div>
       </motion.div>
       {/* Footer */}

@@ -70,7 +70,9 @@ export default function AdminPanel() {
 
       // Fetch admin statistics
       const statsRes = await axios.get(
-        `${process.env.REACT_APP_API_URL || "http://localhost:5000/api"}/admin/stats`,
+        `${
+          process.env.REACT_APP_API_URL || "http://localhost:5000"
+        }/api/admin/stats`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -78,7 +80,9 @@ export default function AdminPanel() {
 
       // Fetch all users
       const usersRes = await axios.get(
-        `${process.env.REACT_APP_API_URL || "http://localhost:5000/api"}/admin/users`,
+        `${
+          process.env.REACT_APP_API_URL || "http://localhost:5000"
+        }/api/admin/users`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -86,7 +90,9 @@ export default function AdminPanel() {
 
       // Fetch all uploads
       const uploadsRes = await axios.get(
-        `${process.env.REACT_APP_API_URL || "http://localhost:5000/api"}/admin/uploads`,
+        `${
+          process.env.REACT_APP_API_URL || "http://localhost:5000"
+        }/api/admin/uploads`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -131,9 +137,14 @@ export default function AdminPanel() {
 
     try {
       const token = localStorage.getItem("token");
-      await axios.delete(`${process.env.REACT_APP_API_URL || "http://localhost:5000/api"}/admin/users/${userId}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      await axios.delete(
+        `${
+          process.env.REACT_APP_API_URL || "http://localhost:5000"
+        }/api/admin/users/${userId}`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
 
       // Refresh data after deletion
       fetchAdminData();
@@ -154,7 +165,9 @@ export default function AdminPanel() {
     try {
       const token = localStorage.getItem("token");
       await axios.delete(
-        `${process.env.REACT_APP_API_URL || "http://localhost:5000/api"}/admin/uploads/${uploadId}`,
+        `${
+          process.env.REACT_APP_API_URL || "http://localhost:5000"
+        }/api/admin/uploads/${uploadId}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -180,7 +193,9 @@ export default function AdminPanel() {
     try {
       const token = localStorage.getItem("token");
       await axios.patch(
-        `${process.env.REACT_APP_API_URL || "http://localhost:5000/api"}/admin/users/${userId}/status`,
+        `${
+          process.env.REACT_APP_API_URL || "http://localhost:5000"
+        }/api/admin/users/${userId}/status`,
         { status: newStatus },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -206,7 +221,9 @@ export default function AdminPanel() {
     try {
       const token = localStorage.getItem("token");
       await axios.patch(
-        `${process.env.REACT_APP_API_URL || "http://localhost:5000/api"}/admin/users/${userId}/role`,
+        `${
+          process.env.REACT_APP_API_URL || "http://localhost:5000"
+        }/api/admin/users/${userId}/role`,
         { role: newRole },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -224,7 +241,9 @@ export default function AdminPanel() {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.get(
-        `${process.env.REACT_APP_API_URL || "http://localhost:5000/api"}/admin/users/${userId}`,
+        `${
+          process.env.REACT_APP_API_URL || "http://localhost:5000"
+        }/api/admin/users/${userId}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -302,14 +321,13 @@ export default function AdminPanel() {
   return (
     <div className="min-h-screen bg-gray-50">
       <Navbar />
-      
+
       <motion.div
         initial="hidden"
         animate="visible"
         variants={containerVariants}
         className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8"
       >
-        
         {/* Admin Header */}
         <motion.div variants={itemVariants} className="mb-8">
           <div className="flex items-center gap-3 mb-4">

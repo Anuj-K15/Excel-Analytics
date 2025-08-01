@@ -20,11 +20,16 @@ export default function History() {
         }
 
         console.log("Fetching history...");
-        const res = await axios.get(`${process.env.REACT_APP_API_URL || "http://localhost:5000/api"}/history`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const res = await axios.get(
+          `${
+            process.env.REACT_APP_API_URL || "http://localhost:5000"
+          }/api/history`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
 
         console.log("History data received:", res.data);
         setHistory(res.data.data || []);
@@ -200,7 +205,6 @@ export default function History() {
           </div>
         </div>
       </div>
-
     </div>
   );
 }
