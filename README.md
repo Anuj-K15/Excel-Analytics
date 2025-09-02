@@ -23,6 +23,7 @@ Excel Analytics is a web application designed to help users upload Excel files, 
 ## Tech Stack
 
 ### Frontend
+
 - React.js
 - Three.js for 3D visualizations
 - Firebase Authentication
@@ -30,6 +31,7 @@ Excel Analytics is a web application designed to help users upload Excel files, 
 - Axios for API communication
 
 ### Backend
+
 - Node.js with Express
 - MongoDB for data storage
 - Multer for file uploads
@@ -60,6 +62,7 @@ Excel Analytics is a web application designed to help users upload Excel files, 
 ## Getting Started
 
 ### Prerequisites
+
 - Node.js (v14 or later)
 - npm or yarn
 - MongoDB instance
@@ -67,12 +70,14 @@ Excel Analytics is a web application designed to help users upload Excel files, 
 ### Local Development
 
 1. Clone the repository:
+
    ```
    git clone https://github.com/Anuj-K15/Excel-Analytics.git
    cd Excel-Analytics
    ```
 
 2. Set up the frontend:
+
    ```
    cd client
    npm install
@@ -81,6 +86,7 @@ Excel Analytics is a web application designed to help users upload Excel files, 
    ```
 
 3. Set up the backend:
+
    ```
    cd server
    npm install
@@ -93,6 +99,7 @@ Excel Analytics is a web application designed to help users upload Excel files, 
 ## Environment Variables
 
 ### Frontend (.env)
+
 ```
 REACT_APP_API_URL=http://localhost:5000
 REACT_APP_FIREBASE_API_KEY=your_firebase_api_key
@@ -104,6 +111,7 @@ REACT_APP_FIREBASE_APP_ID=your_firebase_app_id
 ```
 
 ### Backend (.env)
+
 ```
 PORT=5000
 MONGODB_URI=your_mongodb_connection_string
@@ -114,6 +122,7 @@ FRONTEND_URL=http://localhost:3000
 ## Deployment
 
 ### Frontend
+
 The frontend is deployed on Vercel. To deploy your own instance:
 
 1. Connect your GitHub repository to Vercel
@@ -121,6 +130,7 @@ The frontend is deployed on Vercel. To deploy your own instance:
 3. Set the build command to `cd client && npm install && npm run build`
 
 ### Backend
+
 The backend is deployed on Render. To deploy your own instance:
 
 1. Connect your GitHub repository to Render
